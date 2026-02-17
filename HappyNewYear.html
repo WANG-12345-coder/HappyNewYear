@@ -1,27 +1,74 @@
 <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马年大吉</title>
+    <style>
+        body {
+            padding: 50px;
+            font-family: "Microsoft Yahei", sans-serif;
+            background-color: #d9c31d;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .bord{
+            background-color: rgba(170, 51, 38, 0.099);
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(203, 5, 5, 0.1);
+        }
+        .title{
+            font-size: 28px;
+            color: #ec833ef4;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        .contect{
+            font-size: 18px;
+            line-height: 1.8;
+            color: #333;
+            white-space: pre-line;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="bord">
+        <h1 style="color: chocolate; display: inline-block; margin: 0 10px 0 0;">2026</h1>
+        <h1 style="color: red;       display: inline-block; margin: 0;">马年大吉</h1>
+    </div>
 
-<html>
-    <head>
-        <title>HappyNewYear</title>
-    </head>
-    <body>
-        <button class="bin">ccc</button>
-        <video width = "100%" height="400" controls autoplay playsinline>
-            <source src="E:\HappyHewYear_20260217_09123082.mp4" type="video/mp4"></source>
-        </video>
+    
+    <script>
+        // 这里是你的四字新年祝福，用 \n 换行
+        const text = "\n祝大家:\n马到成功!\n龙马精神!\n一马当先!\n万马奔腾!";
         
-        <!--CSS-->
-        <style>
-            .bin{
-                padding: 10xp 20xp;
-                background: #007bff;
-                color: white;
-                border: none;
-                border-radius: 6xp;
-                cursor: pointer;
-                font-size: 16xp;
-                transition: 0.3s;
+        let i = 0;
+        const speed = 150; // 打字速度
+        const demo = document.getElementById("demo");
+
+        function typeWriter() {
+            if (i < text.length) {
+                // 处理换行符，保持排版整洁
+                if (text[i] === '\n') {
+                    demo.innerHTML += '<br>';
+                } else {
+                    demo.innerHTML += text[i];
+                }
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                // 打字结束后隐藏光标
+                demo.style.borderRight = "none";
             }
-        </style>
-    </body>
+        }
+
+        typeWriter();
+    </script>
+</body>
 </html>
