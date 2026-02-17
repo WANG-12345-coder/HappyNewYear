@@ -1,73 +1,121 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <!-- 声明文档编码为UTF-8，确保中文正常显示 -->
     <meta charset="UTF-8">
+    <!-- 视口设置，确保在移动设备上正确显示，禁止缩放 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>马年大吉</title>
+    <!-- 网页标题，显示在浏览器标签上 -->
+    <title>新年祝福</title>
     <style>
+        /* 页面整体样式 */
         body {
-            padding: 50px;
+            /* 设置字体，确保在不同系统上都有良好显示 */
             font-family: "Microsoft Yahei", sans-serif;
-            background-color: #d9c31d;
+            /* 背景色：浅米黄色，营造温馨氛围 */
+            background-color: #fefae0;
+            /* 最小高度为视口高度，让内容垂直居中 */
+            min-height: 100vh;
+            /* 使用弹性布局，让子元素（卡片）水平垂直居中 */
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
+            align-items: center;
+            /* 清除默认边距 */
             margin: 0;
+            /* 给页面四周留一点内边距，防止内容贴边 */
+            padding: 20px;
         }
-        .bord{
-            background-color: rgba(170, 51, 38, 0.099);
-            padding: 40px 60px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(203, 5, 5, 0.1);
+
+        /* 圆角卡片容器 */
+        .card {
+            /* 卡片背景色：米白色 */
+            background-color: #fff9f0;
+            /* 边框：2px 红色实线 */
+            border: 2px solid #d81b60;
+            /* 圆角：16px，让卡片边角圆润 */
+            border-radius: 16px;
+            /* 内边距：上下40px，左右40px，让内容和边框有距离 */
+            padding: 40px;
+            /* 最大宽度：600px，防止在大屏幕上太宽 */
+            max-width: 600px;
+            /* 宽度：100%，在小屏幕上自适应 */
+            width: 100%;
         }
-        .title{
+
+        /* 标题样式 */
+        .title {
+            /* 字体大小：28px */
             font-size: 28px;
-            color: #ec833ef4;
+            /* 字体颜色：红色 */
+            color: #d32f2f;
+            /* 文字居中 */
             text-align: center;
+            /* 底部外边距：30px，和下面的内容拉开距离 */
             margin-bottom: 30px;
+            /* 字体加粗 */
             font-weight: bold;
         }
-        .contect{
+
+        /* 祝福语内容样式 */
+        .content {
+            /* 字体大小：18px */
             font-size: 18px;
+            /* 行高：1.8，让文字更舒展易读 */
             line-height: 1.8;
+            /* 字体颜色：深灰色 */
             color: #333;
+            /* 保留换行符，让 \n 生效 */
             white-space: pre-line;
-            
+            /* 右边框：2px 黑色，模拟打字机光标 */
+            border-right: 2px solid #000;
+            /* 行内块元素，让光标紧贴文字 */
+            display: inline-block;
         }
     </style>
 </head>
 <body>
-    <div class="bord">
-        <h1 style="color: chocolate; display: inline-block; margin: 0 10px 0 0;">2026</h1>
-        <h1 style="color: red;       display: inline-block; margin: 0;">马年大吉</h1>
+    <!-- 圆角卡片容器 -->
+    <div class="card">
+        <!-- 标题 -->
+        <h1 class="title">2026马年大吉</h1>
+        <!-- 祝福语内容，id为greeting，用于JS操作 -->
+        <div class="content" id="greeting"></div>
     </div>
 
-    
     <script>
-        // 这里是你的四字新年祝福，用 \n 换行
-        const text = "\n祝大家:\n马到成功!\n龙马精神!\n一马当先!\n万马奔腾!";
+        // 要显示的祝福语文本，用 \n 表示换行
+        const text = "2026马年大吉！\n愿你策马扬鞭，万事顺遂；\n一马当先，福气满满；\n龙马精神，阖家幸福！";
         
+        // 当前显示到第几个字符，初始为0
         let i = 0;
-        const speed = 150; // 打字速度
-        const demo = document.getElementById("demo");
+        // 打字速度：每100毫秒显示一个字符
+        const speed = 100;
+        // 获取页面上的祝福语容器元素
+        const greeting = document.getElementById("greeting");
 
+        // 打字机效果函数
         function typeWriter() {
+            // 如果还没显示完所有字符
             if (i < text.length) {
-                // 处理换行符，保持排版整洁
+                // 如果当前字符是换行符 \n
                 if (text[i] === '\n') {
-                    demo.innerHTML += '<br>';
+                    // 在HTML中插入 <br> 标签实现换行
+                    greeting.innerHTML += '<br>';
                 } else {
-                    demo.innerHTML += text[i];
+                    // 否则，将当前字符添加到容器中
+                    greeting.innerHTML += text[i];
                 }
+                // 索引加1，准备显示下一个字符
                 i++;
+                // 间隔speed毫秒后，再次调用自身，实现逐字效果
                 setTimeout(typeWriter, speed);
             } else {
-                // 打字结束后隐藏光标
-                demo.style.borderRight = "none";
+                // 所有字符显示完毕后，隐藏光标
+                greeting.style.borderRight = "none";
             }
         }
 
+        // 调用函数，开始生成祝福语
         typeWriter();
     </script>
 </body>
